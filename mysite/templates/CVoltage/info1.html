@@ -1,0 +1,146 @@
+{% extends 'homepage/base.html' %}
+{% block title %}详细信息{% endblock %}
+{% block css %}
+    <style type="text/css">
+        table th
+        {
+            font-weight: bold;
+        }
+
+        table,th,td
+        {
+            border:1px solid ;
+            text-align:center;
+            height: 40px;
+        }
+        .cellError{
+            color:red;
+        }
+        .odd{
+            background:  #e0e0e0;
+        }
+        .even{
+            background: #ffffff;
+        }
+        .select{
+            background:#C6E746;
+        }
+
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="classify iframe body">
+        {% if not cvoltageinfo %}
+            <p>暂无您查找的信息</p>
+        {%else %}
+            <table style="width:940px;" border="1">
+                <thead>
+                <tr class="parent" id="parent" style="height:40px;"><td colspan="12" style="font-weight: bold;background-color:#555555 ; color: #ffffff">电流电压信息</td></tr>
+                <tr><th class="cellStyle">所序号</th><th class="cellStyle">柜序号</th><th class="cellStyle">A相电压</th><th class="cellStyle">B相电压</th><th class="cellStyle">C相电压</th><th class="cellStyle">A相电流</th><th class="cellStyle">B相电流</th><th class="cellStyle">C相电流</th><th>A相功率因素</th><th class="cellStyle">B相功率因素</th><th class="cellStyle">C相功率因素</th><th class="cellStyle">更新时间</th></tr>
+                </thead>
+                <tbody>
+                {% for cvoltage in cvoltageinfo.object_list %}
+                    <tr id ="{{ cvoltage.cid.cid }}" ><td>{{ cvoltage.sid.sid }}</td><td>{{ cvoltage.cid.cid }}</td><td>{{ cvoltage.Ua}}</td><td>{{ cvoltage.Ub }}</td><td>{{ cvoltage.Uc }}</td><td>{{ cvoltage.Ia }}</td><td>{{ cvoltage.Ib }}</td><td>{{ cvoltage.Ic }}</td><td>{{ cvoltage.PFa }}</td><td>{{ cvoltage.PFb }}</td><td>{{ cvoltage.PFc }}</td><td>{{ cvoltage.update_time }}</td></tr>
+                    {% block script %}
+                        <script type="text/javascript">
+                                $(document).ready(function(){
+                                    $("tr:odd").addClass("odd");
+                                    $("tr:even").addClass("even");
+                                    $(document.getElementById("{{ cvoltage.cid.cid}}")).click(function(){
+                                        $(this).addClass("select");
+                                        td1=$(this).find('td:eq(0)').text();
+                                        td2=$(this).find('td:eq(1)').text();
+                                        $(window.parent.document).find("input:radio").attr("checked","true");
+                                        if(window.parent.document.getElementById("suoid")){
+                                            window.parent.document.getElementById("suoid").value=td1;
+                                        }
+                                        window.parent.document.getElementById("suo_id").value=td1;   //这和下面的Jquery方法是有点不一样的。注意区别！
+                                        if(window.parent.document.getElementById("guiid")){
+                                            window.parent.document.getElementById("guiid").value=td2;
+                                        }
+                                        window.parent.document.getElementById("gui_id").value=td2;
+{#                                        $(window.parent.document).find("#suoid").attr("value",td1);#}
+{#                                        $(window.parent.document).find("#suo_id").attr("value",td1);#}
+{#                                        $(window.parent.document).find("#guiid").attr("value",td2);#}
+{#                                        $(window.parent.document).find("#gui_id").attr("value",td2);#}
+                                    });
+                                    $(document.getElementById("{{ cvoltage.cid.cid}}")).mouseleave(function(){
+                                       $(this).removeClass("select") ;
+                                    });
+                                    for(var i= 2;i< 5;i++){
+                                            td_U=$(document.getElementById("{{ cvoltage.cid.cid }}")).find('td:eq('+i+')').text();
+                                            if(parseFloat(td_U)>{{ max_U }} || parseFloat(td_U)<{{ min_U }}){
+                                                $(document.getElementById("{{ cvoltage.cid.cid }}")).find('td:eq('+i+')').attr("class","cellError");
+                                                var timeStr="{{cvoltage.update_time  }}";
+                                                var result=timeStr.split(" ");
+                                                var time_str=result[1].split(":");
+                                                var date_str=result[0].split("-");
+                                                var today = new Date();
+                                                var year = today.getFullYear();
+                                                var month = today.getMonth() + 1;
+                                                var day = today.getDate();
+                                                var hour=today.getHours();
+                                                var minute=today.getMinutes();
+                                                var second=today.getSeconds();
+                                                if(Number(date_str[0])==Number(year.toString()) && Number(date_str[1])==Number(month.toString()) && Number(date_str[2])==Number(day.toString()) && Number(time_str[0])==Number(hour.toString()) && Number(time_str[1])==Number(minute.toString())){
+
+                                                    if((Number(second.toString())-Number(time_str[2]))<5){
+                                                        alert("{{cvoltage.update_time  }}"+" "+"所序号："+"{{ cvoltage.sid.sid }}"+" "+"柜序号："+"{{ cvoltage.cid.cid }}"+" "+"有异常发现！");
+
+                                                    }
+
+                                                }
+
+                                            }
+                                    }
+                                    for(var j= 5;j< 8;j++){
+                                        td_I=$(document.getElementById("{{ cvoltage.cid.cid }}")).find('td:eq('+j+')').text();
+                                        if(parseFloat(td_I)>{{ max_I }} || parseFloat(td_I)<{{ min_I }}){
+                                            $(document.getElementById("{{ cvoltage.cid.cid }}")).find('td:eq('+j+')').attr("class","cellError");
+                                            var time_Str="{{cvoltage.update_time  }}";
+                                            var result_str=time_Str.split(" ");
+                                            var I_time_str=result_str[1].split(":");
+                                            var I_date_str=result_str[0].split("-");
+                                            var I_today = new Date();
+                                            var I_year = I_today.getFullYear();
+                                            var I_month = I_today.getMonth() + 1;
+                                            var I_day = I_today.getDate();
+                                            var I_hour=I_today.getHours();
+                                            var I_minute=I_today.getMinutes();
+                                            var I_second=I_today.getSeconds();
+                                            if(Number(I_date_str[0])==Number(I_year.toString()) && Number(I_date_str[1])==Number(I_month.toString()) && Number(I_date_str[2])==Number(I_day.toString()) && Number(I_time_str[0])==Number(I_hour.toString()) && Number(I_time_str[1])==Number(I_minute.toString())){
+
+                                                if((Number(I_second.toString())-Number(I_time_str[2]))<5){
+                                                    alert("{{cvoltage.update_time  }}"+" "+"所序号："+"{{ cvoltage.sid.sid }}"+" "+"柜序号："+"{{ cvoltage.cid.cid }}"+" "+"有异常发现！");
+
+                                                }
+
+                                            }
+
+
+                                        }
+                                    }
+
+                                });
+                        </script>
+                    {% endblock %}
+                    <!--
+                    <a title="点击查看详情" onClick="getDetailByCode('{{product.itemCode }}','{{ product.locaCode}}');">
+                        <img src="{{ product.foodtraceImage }}" alt="产品图片">
+                    </a>
+                    -->
+                {% endfor %}
+                <tr><td colspan="12">
+                    <span style="font-size: 18px;">共{{ count }}条记录 每页10条 [{{ cvoltageinfo.number }}/{{ cvoltageinfo.paginator.num_pages }}]</span>
+                    <span class="fenye">{% if cvoltageinfo.has_previous %}<a href="{% url info1 %}?page={{ cvoltageinfo.previous_page_number }}" target="targetPage"> 上一页</a>{% endif %}</span>
+                    <span class="fenye"> {% if cvoltageinfo.has_next %}<a href="{% url info1 %}?page={{ cvoltageinfo.next_page_number }}" target="targetPage">下一页</a>{% endif %}</span>
+                    <span><a href="{% url info1 %}?page={{ cvoltageinfo.paginator.num_pages }}" target="targetPage">最后一页</a></span>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+
+        {% endif %}
+    </div>
+{% endblock %}
+

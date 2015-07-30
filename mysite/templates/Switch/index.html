@@ -1,0 +1,145 @@
+
+{% extends 'homepage/suBase.html' %}
+
+{% block title %}东方旭智能开关柜监测系统{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/site_static/cvoltage_static/css/setbtn.css">
+    <style type="text/css">
+        #showSwitch{
+            margin-left: 10px;
+
+        }
+        .select{
+            color:red;
+
+        }
+        .unselect{
+            color:#000000;
+        }
+
+    </style>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript" src="/site_static/switch_static/js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="/site_static/switch_static/js/jquery-ui-1.8.21.custom/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="/site_static/switch_static/js/jquery-ui-1.8.21.custom/ui/jquery-ui-1.8.21.custom.js"></script>
+    <script type="text/javascript" src="/site_static/switch_static/js/infoList.js"></script>
+    <script type="text/javascript" src="/site_static/switch_static/js/switchList.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#allapp").slideToggle("fast");
+            info_list();
+            list_switch(1,"-1",-1);
+{#            setInterval("list_switch(1,'','')",10000);#}
+            $('#findProduction').click(function(){
+                var sid=$('#sid').val();
+                var cnum=$('#dnum').val();
+                $('#targetPage').attr('src','{% url info2 %}?sid='+sid+'&cnum='+cnum);
+                list_switch(1,sid,cnum);
+
+            });
+
+        });
+
+    </script>
+    <style type="text/css">
+
+        .b1,.b2,.b3,.b4,.b1b,.b2b,.b3b,.b4b,.b{display:block;overflow:hidden;}
+        .b1,.b2,.b3,.b1b,.b2b,.b3b{height:1px;}
+        .b2,.b3,.b4,.b2b,.b3b,.b4b,.b{border-left:1px solid #999;border-right:1px solid #999;}
+        .b1,.b1b{margin:0 5px;background:#999;}
+        .b2,.b2b{margin:0 3px;border-width:2px;}
+        .b3,.b3b{margin:0 2px;}
+        .b4,.b4b{height:2px;margin:0 1px;}
+        .d1{background:#008aff;}
+        .k {height:30px;}
+
+    </style>
+
+{% endblock %}
+
+{% block content %}
+    <div style="height:50px" >
+        <div class="navbar ">
+            <div class="navbar-inner">
+                <div  >
+                    <ul class="nav">
+                        <li ><a href="/homepage/index/">首页</a></li>
+                        <li class="divider-vertical "></li>
+                        <li ><a href="/CVoltage/index/">电流电压信息</a></li>
+                        <li class="divider-vertical "></li>
+                        <li class="active "><a href="/Switch/index/">开关信息</a></li>
+                        <li class="divider-vertical "></li>
+                        <li><a href="/homepage/exception/" target="_blank">查看异常信息</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-left:220px;width: 1010px;height:30px;">
+        <b class="b1"></b><b class="b2 d1"></b><b class="b3 d1"></b><b class="b4 d1"></b>
+        <div class="b d1 k">
+            <span style="font-weight:bold;color:#ffffff;">开关信息查询</span>
+        </div>
+        <b class="b4b d1"></b><b class="b3b d1"></b><b class="b2b d1"></b><b class="b1b"></b>
+    </div>
+    <div style="width:1010px;" class="cutoffl">  </div>  <br/>
+    <div id="tabstitle" class="app3" style="height:80px;margin-left: 220px;">
+        {#            <iframe src="{% url showSwitch %}" name="showSwitch" id="showSwitch" style="height:40px; width:920px;border: 0px;" allowtransparency="true"  ></iframe>#}
+        <div style="margin-top: 20px">
+            <span style="width: 90px;font-weight: bold;font-size: 15px;color:#008aff;">查询功能：</span>
+            配电所：
+            <select  name='sid' id='sid'  style="width:90px" onchange="showSG(value)">
+                {% for station in  stations %}
+                    <option value="{{ station.sid }}"  >{{ station.sid }}</option>
+                {% endfor %}
+            </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span >开关柜：</span>
+            <select name='dnum' id='dnum' style="width:90px" >
+
+            </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="btn" type="button" value="查询" name="findProduction" id='findProduction'>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="contain">
+        <b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
+{#        <iframe  src="{% url info2 %}" name="targetPage" id="targetPage"></iframe>#}
+        <div id="mpmessage">
+        </div>
+        <div class="pagemap" id="pagemap">
+        </div>
+        <script language="javascript">
+            function showSG(snum){
+                $("#dnum").empty();
+                var url="/showInfo/showSwitchgear/?sid="+snum;
+                $.getJSON(url,
+                        function(data){
+                            var geardata= data['gears'];
+                            $.each(geardata,function(gearIndex,obj) {
+                                var id=obj['cid'];
+                                selectstr = "<option value='" + id + "'>" + id + "</option>";
+                                $('#dnum').append(selectstr);
+
+                            });
+
+                        });
+            }
+            var sid=$("#sid").val();
+            showSG(sid);
+
+            //方法三
+{#            function refresh(){#}
+{#                var mframe=$('#targetPage').attr("src");#}
+{#                $("#targetPage").attr("src",mframe);#}
+{#            }#}
+{#            setInterval("refresh()",5000);#}
+
+
+        </script>
+        <b class="b4b"></b><b class="b3b"></b><b class="b2b"></b><b class="b1b"></b>
+    </div>
+
+{% endblock %}

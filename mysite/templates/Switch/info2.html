@@ -1,0 +1,79 @@
+{% extends 'homepage/base.html' %}
+
+{% block title %}详细信息{% endblock %}
+{% block css %}
+    <style type="text/css">
+        table th
+        {
+            font-weight: bold;
+        }
+
+        table,th,td
+        {
+            border:1px solid ;
+            text-align:center;
+            height: 40px;
+        }
+        .odd{
+            background:  #e0e0e0;
+        }
+        .even{
+            background: #ffffff;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="classify iframe body">
+        {% if not switchinfo %}
+            <p>暂无您查找的信息</p>
+
+        {%else %}
+            <table style="width:940px;" border="1">
+                <thead>
+                <tr class="parent" id="parent"  style="height:40px;"><td colspan="19" style="font-weight: bold; background-color:#555555 ; color: #ffffff"> 开关信息</td></tr>
+                <tr><th>所序号</th><th>柜序号</th><th>S1</th><th>S2</th><th>S3</th><th>S4</th><th>S5</th><th>S6</th><th>S7</th><th>S8</th><th>S9</th><th>S10</th><th>S11</th><th>S12</th><th>S13</th><th>S14</th><th>S15</th><th>S16</th><th>更新时间</th></tr>
+                </thead>
+                <tbody>
+                {% for switch in switchinfo.object_list %}
+                    <tr id ="{{ switch.cid.cid }}"><td>{{ switch.sid.sid }}</td><td>{{ switch.cid.cid }}</td><td>{{ switch.S1 }}</td><td>{{ switch.S2 }}</td><td>{{ switch.S3 }}</td><td>{{ switch.S4 }}</td><td>{{ switch.S5 }}</td><td>{{ switch.S6 }}</td><td>{{ switch.S7 }}</td><td>{{ switch.S8 }}</td><td>{{ switch.S9 }}</td><td>{{ switch.S10 }}</td><td>{{ switch.S11 }}</td><td>{{ switch.S12 }}</td><td>{{ switch.S13}}</td><td>{{ switch.S14 }}</td><td>{{ switch.S15 }}</td><td>{{ switch.S16 }}</td><td>{{ switch.update_time }}</td></tr>
+                    {% block script %}
+                        <script type="text/javascript">
+                            $(document).ready(function(){
+                                $("tr:odd").addClass("odd");
+                                $("tr:even").addClass("even");
+                                for(i=2;i<=17;i++){
+                                    td=$(document.getElementById("{{ switch.cid.cid }}")).find('td:eq('+i+')').text();
+                                    if(td=="True"){
+                                        $(document.getElementById("{{ switch.cid.cid }}")).find('td:eq('+i+')').text("开");
+                                    }else{
+                                        $(document.getElementById("{{ switch.cid.cid }}")).find('td:eq('+i+')').text("关");
+                                    }
+
+                                };
+
+                            });
+
+                        </script>
+
+                    {% endblock %}
+                    <!--
+                    <a title="点击查看详情" onClick="getDetailByCode('{{product.itemCode }}','{{ product.locaCode}}');">
+                        <img src="{{ product.foodtraceImage }}" alt="产品图片">
+                    </a>
+                    -->
+                {% endfor %}
+                <tr><td colspan="19">
+                    <span style="font-size: 18px;">共{{ count }}条记录 每页10条 [{{ switchinfo.number }}/{{ switchinfo.paginator.num_pages }}]</span>
+                    <span class="fenye">{% if switchinfo.has_previous %}<a href="{% url info2 %}?page={{ switchinfo.previous_page_number }}" target="targetPage"> 上一页</a>{% endif %}</span>
+                    <span class="fenye"> {% if switchinfo.has_next %}<a href="{% url info2 %}?page={{ switchinfo.next_page_number }}" target="targetPage">下一页</a>{% endif %}</span>
+                    <span><a href="{% url info2 %}?page={{ switchinfo.paginator.num_pages }}" target="targetPage">最后一页</a></span>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+
+        {% endif %}
+    </div>
+{% endblock %}
+

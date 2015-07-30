@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7 ]><html class="ie ie6"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8"><![endif]-->
+<!--[if IE 9 ]><html class="ie ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html>
+<!--<![endif]-->
+<head>
+    <title>监测系统异常信息</title>
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/bootstrap.css" >
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/base.css">
+{#    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/pages2.css">#}
+    <style type="text/css">
+        table{
+            filter:progid:DXImageTransform.Microsoft.Shadow(color=#909090,direction=120,strength=4);/*ie*/
+            -moz-box-shadow: 2px 2px 10px #909090;/*firefox*/
+            -webkit-box-shadow: 2px 2px 10px #909090;/*safari或chrome*/
+            box-shadow:2px 2px 10px #909090;/*opera或ie9*/
+        }
+        table th
+        {
+            font-weight: bold;
+
+        }
+
+        table,th,td
+        {
+            border:1px solid ;
+            text-align:center;
+            height: 40px;
+        }
+        .cellStyle{
+            color:red;
+        }
+
+
+    </style>
+    <script type="text/javascript" src="/site_static/homepage_static/js/jquery.js"></script>
+    <script type="text/javascript" src="/site_static/homepage_static/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="page-header" style="font-weight: bold;  font-size: 20px; color: #888888" >开关柜监测系统异常信息</h1 >
+
+    <div class="classify iframe body">
+
+        {% if not exceptionInfo %}
+            <p>暂无您查找的信息</p>
+        {%else %}
+            <table style="width:940px;" border="1">
+                <thead>
+                <tr class="parent" id="parent" style="height:40px;"><td colspan="13" style="font-weight: bold; color: #8d8d8d">异常信息</td></tr>
+                <tr><th >时间</th><th  >所序号</th><th >柜序号</th><th >A相电压</th><th >B相电压</th><th >C相电压</th><th >A相电流</th><th >B相电流</th><th >C相电流</th><th>A相功率因素</th><th >B相功率因素</th><th >C相功率因素</th><th >异常原因</th></tr>
+                </thead>
+                <tbody>
+                {% for exception in exceptionInfo.object_list %}
+                    <tr id ="{{ exception.update_time }}"><td>{{ exception.update_time }}</td><td>{{ exception.sid.sid }}</td><td>{{ exception.cid.cid }}</td><td>{{ exception.Ua}}</td><td>{{ exception.Ub }}</td><td>{{ exception.Uc }}</td><td>{{ exception.Ia }}</td><td>{{ exception.Ib }}</td><td>{{ exception.Ic }}</td><td>{{ exception.PFa }}</td><td>{{ exception.PFb }}</td><td>{{ exception.PFc }}</td><td>{{exception.other_msg  }}</td></tr>
+
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                            for(var i= 3;i< 6;i++){
+                                td_U=$(document.getElementById("{{ exception.update_time }}")).find('td:eq('+i+')').text();
+                                if(parseFloat(td_U)>220 || parseFloat(td_U)<0){
+                                    $(document.getElementById("{{ exception.update_time }}")).find('td:eq('+i+')').attr("class","cellStyle");
+
+                                }
+                            }
+                            for(var j= 6;j< 9;j++){
+                                td_I=$(document.getElementById("{{ exception.update_time }}")).find('td:eq('+j+')').text();
+                                if(parseFloat(td_I)>2 || parseFloat(td_I)<0){
+                                    $(document.getElementById("{{ exception.update_time }}")).find('td:eq('+j+')').attr("class","cellStyle");
+
+                                }
+                            }
+
+                        });
+                    </script>
+
+                {% endfor %}
+                <tr><td colspan="13">
+                    <span style="font-size: 18px;">共{{ count }}条记录 每页20条 [{{ exceptionInfo.number }}/{{ exceptionInfo.paginator.num_pages }}]</span>
+                    <span class="fenye">{% if exceptionInfo.has_previous %}<a href="/homepage/exception/?page={{ exceptionInfo.previous_page_number }}" > 上一页</a>{% endif %}</span>
+                    <span class="fenye"> {% if exceptionInfo.has_next %}<a href="/homepage/exception/?page={{ exceptionInfo.next_page_number }}" >下一页</a>{% endif %}</span>
+                    <span><a href="/homepage/exception/?page={{ exceptionInfo.paginator.num_pages }}" >最后一页</a></span>
+                </td>
+                </tr>
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+{#    {% for exception in exceptionInfo.object_list %}#}
+{#        <dt>{{ exception.update_time }} 所序号：{{ exception.sid.sid }} 柜序号：{{ exception.cid.cid }} A相电压：{{ exception.Ua }} B相电压：{{ exception.Ub }} C相电压：{{ exception.Uc}} A相电流：{{ exception.Ia}} B相电流：{{ exception.Ib}} C相电流：{{ exception.Ic}} A相功率因素：{{ exception.PFa}} B相功率因素：{{ exception.PFb}} C相功率因素：{{ exception.PFc}}</dt>#}
+{#        <dd>异常原因：{{exception.other_msg  }}</dd>#}
+{#    {% endfor %}#}
+
+</div>
+
+
+</body>
+</html>

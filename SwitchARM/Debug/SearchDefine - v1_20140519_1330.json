@@ -1,0 +1,36 @@
+{
+"Type":"SearchDefine",
+"DepartmentID":"s001",
+"SwitchgearID":"c100",
+"Meters":[
+	{"ID":"M1","NodeAddress":2,"Command":3,"StartAddress":"0100","RegisterCount":18,"Samples":[
+		{"Name":"Ua","ValueType":"Float"},
+		{"Name":"Ub","ValueType":"Float"},
+		{"Name":"Uc","ValueType":"Float"},
+		{"Name":"Ia","ValueType":"Float"},
+		{"Name":"Ib","ValueType":"Float"},
+		{"Name":"Ic","ValueType":"Float"},
+		{"Name":"PFa","ValueType":"Float"},
+		{"Name":"PFb","ValueType":"Float"},
+		{"Name":"PFC","ValueType":"Float"}
+	]},
+	{"ID":"M2","NodeAddress":1,"Command":3,"StartAddress":"1000","RegisterCount":16,"Samples":[
+		{"Name":"BreakerPos","ValueType":"Bit"},
+		{"Name":"HandPos","ValueType":"Bit"},
+		{"Name":"TestPos","ValueType":"Bit"},
+		{"Name":"GroundKnife","ValueType":"Bit"},
+		{"Name":"Energy","ValueType":"Bit"},
+		{"Name":"Switch7","ValueType":"Bit"},
+		{"Name":"EA","ValueType":"Bit"},
+		{"Name":"EB","ValueType":"Bit"},
+		{"Name":"EC","ValueType":"Bit"},
+		{"Name":"Lock","ValueType":"Bit"},
+		{"Name":"Sensor1","ValueType":"Bit"},
+		{"Name":"Sensor2","ValueType":"Bit"},
+		{"Name":"Load1","ValueType":"Bit"},
+		{"Name":"Load2","ValueType":"Bit"},
+		{"Name":"Loop1","ValueType":"Bit"},
+		{"Name":"Loop2","ValueType":"Bit"}
+	]}
+]
+}

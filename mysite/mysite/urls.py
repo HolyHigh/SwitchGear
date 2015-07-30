@@ -1,0 +1,32 @@
+from django.conf.urls import patterns, include, url
+
+# Uncomment the next two lines to enable the admin:
+from django.contrib import admin
+admin.autodiscover()
+#from django.contrib import admin
+from mysite import settings
+
+#admin.autodiscover()
+
+from mysite.apps.homepage import views
+urlpatterns = patterns('',
+    url(r'^$',views.boot),
+    # Examples:
+    # url(r'^$', 'mysite.views.home', name='home'),
+    # url(r'^mysite/', include('mysite.foo.urls')),
+
+    # Uncomment the admin/doc line below to enable admin documentation:
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+    # Uncomment the next line to enable the admin:
+    url(r'^admin/', include(admin.site.urls)),
+)
+urlpatterns+=patterns('',
+    url(r'^homepage/',include('mysite.apps.homepage.urls')),
+    url(r'^CVoltage/',include('mysite.apps.CVoltage.urls')),
+    url(r'^Switch/',include('mysite.apps.Switch.urls')),
+    url(r'^showInfo/',include('mysite.apps.showInfo.urls')),
+    #url(r'^foodtrace/',include('AIoTPlatform.apps.foodtrace.urls')),
+    #url(r'^recommendation/',include('AIoTPlatform.apps.recommendation.urls')),
+    #url(r'^weixin/',include('AIoTPlatform.apps.weixin.urls')),
+)

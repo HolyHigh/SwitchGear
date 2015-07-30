@@ -1,0 +1,12 @@
+.btn {  background: #22aaee; padding: 5px;  color: #fff; text-decoration: none; cursor: pointer;font-weight: bold; }
+
+.btn.blue { background: #2ae; }
+.btn.green { background: #9d4; }
+.btn.pink { background: #e1a; }
+.btn:hover { background-color: #a00; }
+.btn:active { background-color: #444; }
+* html .btn { border: 3px double #aaa; }
+* html .btn.blue { border-color: #2ae; }
+* html .btn.green { border-color: #9d4; }
+* html .btn.pink { border-color: #e1a; }
+* html .btn:hover { border-color: #a00; }

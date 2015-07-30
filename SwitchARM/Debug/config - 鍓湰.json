@@ -1,0 +1,21 @@
+{
+"DeviceID":"DEV-001",
+"DepartmentID":"s001",
+"ServerIP":"192.168.14.186",
+"ServerPort":55555,
+"RS485FileName":"/dev/ttyS3",
+"RS485BaudRate":9600,
+"UploadInterval":5,
+"PacketEndTag":"\r\n",
+"RelaysResetTimeBaseInterval":50000
+"Relays":[
+	{"Channel":1,"GPIO":0,"Default":0,"ResetValid":1,"ResetTime":10},
+	{"Channel":2,"GPIO":1,"Default":0,"ResetValid":1,"ResetTime":10}
+]
+}
+/*********************************************************
+* 系统配置文件
+* 
+* @RelaysResetTimeBaseInterval
+*	: 继电器复位时间基本单位为 50 us
+**********************************************************/

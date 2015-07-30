@@ -1,0 +1,326 @@
+
+{% extends 'homepage/suBase.html' %}
+
+{% block title %}东方旭智能开关柜监测系统{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/site_static/cvoltage_static/css/setbtn.css">
+    <style type="text/css">
+        #showGear{
+            margin-left: 10px;
+
+        }
+        .showUl{
+            width: 100px;
+            height: 20px;
+        }
+        .select{
+            color:red;
+
+        }
+        .unselect{
+            color:#000000;
+        }
+
+
+        .b1,.b2,.b3,.b4,.b1b,.b2b,.b3b,.b4b,.b{display:block;overflow:hidden;}
+        .b1,.b2,.b3,.b1b,.b2b,.b3b{height:1px;}
+        .b2,.b3,.b4,.b2b,.b3b,.b4b,.b{border-left:1px solid #999;border-right:1px solid #999;}
+        .b1,.b1b{margin:0 5px;background:#999;}
+        .b2,.b2b{margin:0 3px;border-width:2px;}
+        .b3,.b3b{margin:0 2px;}
+        .b4,.b4b{height:2px;margin:0 1px;}
+        .d1{background:#008aff;}
+        .k {height:30px;}
+
+    </style>
+{% endblock %}
+{% block script %}
+    <script type="text/javascript" src="/site_static/cvoltage_static/js/jquery-ui-1.8.21.custom/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="/site_static/cvoltage_static/js/jquery-ui-1.8.21.custom/ui/jquery-ui-1.8.21.custom.js"></script>
+    <script type="text/javascript" src="/site_static/cvoltage_static/js/listInfo.js"></script>
+    <script type="text/javascript" src="/site_static/cvoltage_static/js/cvList.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#allapp").slideDown("fast");
+            list_Info();
+            list_cv(1,"-1","-1");
+{#            setInterval("list_cv(1,'','')",10000);#}
+            $('#findProduction').click(function(){
+                var sid=$('#sid').val();
+                var dnum=$('#dnum').val();
+{#                                if(dnum==''){#}
+{#                                    alert('请输入柜序号!');#}
+{#                                    return false;#}
+{#                                }#}
+                $('#targetPage').attr('src','{% url info1 %}?sid='+sid+'&dnum='+dnum);
+                list_cv(1,sid,dnum);
+            });
+        });
+
+    </script>
+
+
+{% endblock %}
+
+{% block content %}
+    <div style="height:50px" >
+        <div class="navbar ">
+            <div class="navbar-inner">
+                <div  >
+                    <ul class="nav">
+                        <li ><a href="/homepage/index/">首页</a></li>
+                        <li class="divider-vertical "></li>
+                        <li class="active "><a href="/CVoltage/index/">电流电压信息</a></li>
+                        <li class="divider-vertical "></li>
+                        <li ><a href="/Switch/index/">开关信息</a></li>
+                        <li class="divider-vertical "></li>
+                        <li><a href="/homepage/exception/" target="_blank">查看异常信息</a></li>
+                        <li class="divider-vertical "></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-left:220px;width: 1010px;height:30px;">
+        <b class="b1"></b><b class="b2 d1"></b><b class="b3 d1"></b><b class="b4 d1"></b>
+        <div class="b d1 k">
+            <span style="font-weight:bold;color:#ffffff; margin:auto;">电流电压信息查询</span>
+        </div>
+        <b class="b4b d1"></b><b class="b3b d1"></b><b class="b2b d1"></b><b class="b1b"></b>
+    </div>
+{#    <div style="height: 30px;width:1010px;;margin-left:220px;background-color: #008aff;color:#ffffff;font-weight: bold">电流电压信息查询</div>#}
+
+    <div style="width: 1010px;" class="cutoffl">  </div>  <br/>
+    <div id="tabstitle" class="app3" style="height:170px;margin-left: 220px;">
+        <div style="height:30px;margin-top: 0px;margin-bottom: 20px">
+            <span style="width: 90px;font-weight: bold;font-size: 15px;color:#008aff;">查询功能：</span>
+            配电所：
+            <select  name='sid' id='sid'  style="width:90px" onchange="showSG(value)">
+                {% for station in  stations %}
+                    <option value="{{ station.sid }}"  >{{ station.sid }}</option>
+                {% endfor %}
+            </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span >开关柜：</span>
+            <select name='dnum' id='dnum' style="width:90px" >
+
+            </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" value="查询" name="findProduction" id='findProduction' class="btn">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {#                刷新时间（单位：s）#}
+            {#                <select id="flash_time" name="flash_time" onchange="showtime(value)" style="width:80px;">#}
+            {#                    <option value="1" >1</option>#}
+            {#                    <option value="5" selected >5</option>#}
+            {#                    <option value="10" >10</option>#}
+            {#                    <option value="15" >15</option>#}
+            {#                    <option value="30" >30</option>#}
+            {#                    <option value="60" >60</option>#}
+            {#                </select>#}
+        </div>
+        <div class="cutoffl">  </div>
+        <form  action="/CVoltage/control_query/" method="post"  style="margin-top:10px;height:30px;" onsubmit="return checkForm2()">
+            <span style="width: 90px;font-weight: bold;font-size: 15px;color:#008aff;">实时上传：</span>
+            配电所：<input type="text" name='suo_id' id='suo_id' value='' style="width:80px">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="margin-left: 15px">开关柜：</span><input type="text" name='gui_id' id='gui_id' value='' style="width:80px">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span style="margin-left: 15px">上传时间：</span>
+            <select id="up_time" name="up_time" style="width:60px;">
+                <option value="1" >1</option>
+                <option value="3" selected >3</option>
+                <option value="10" >10</option>
+            </select>
+            (分钟)
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            上传间隔：
+            <select id="time_interval" name="time_interval" style="width:60px;">
+                <option value="10" >10</option>
+                <option value="20" selected >20</option>
+                <option value="30" >30</option>
+            </select>
+            (秒)
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="btn" id="control_query" style="width:80px;height:30px;margin-bottom: 10px;" type="submit" value="实时控制"  />
+        </form>
+        {% if user.is_superuser %}
+            <div class="cutoffl">  </div>
+            <form  action="/CVoltage/control_switch/" method="post"  style="margin-top:10px;height:30px;" onsubmit="return checkForm1()">
+                <span style="width: 90px;font-weight: bold;font-size: 15px;color:#008aff;">控制分合：</span>
+                配电所：<input type="text" name='suoid' id='suoid' value='' style="width:80px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span style="margin-left: 15px">开关柜：</span><input type="text" name='guiid' id='guiid' value='' style="width:80px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {#                   <span style="margin-left: 15px">开关：</span>#}
+                <input name="kaiguan" type="radio" style="margin-left:15px;" value="1" />分闸&nbsp;&nbsp;
+                <input name="kaiguan" type="radio" value="0" />合闸&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input class="btn" id="control" style="width:80px;height:30px;margin-bottom: 10px" type="submit" value="控制"  />
+            </form>
+        {% else %}
+            <div class="cutoffl">  </div>
+            <form action="/CVoltage/sendMsg/" method="post" style="margin-top:10px;height:30px;" onsubmit="return checkForm3()">
+                <span style="width: 90px;font-weight: bold;font-size: 15px;color:#008aff;">发送短信：</span>
+                配电所：<input type="text" name='suo-id' id='suo-id' value='' style="width:80px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span style="margin-left: 15px">开关柜：</span><input type="text" name='gui-id' id='gui-id' value='' style="width:80px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span style="margin-left: 15px">手机号码：</span><input type="text" name='phoneNum' id='phoneNum' value='' style="width:90px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input class="btn" id="sendMsg" style="width:80px;height:30px;margin-bottom: 10px" type="submit" value="发送短信"  />
+            </form>
+        {% endif %}
+    </div>
+    <div class="contain">
+        <b class="b1"></b><b class="b2"></b><b class="b3"></b><b class="b4"></b>
+{#        <iframe  src="{% url info1 %}" name="targetPage" id="targetPage"></iframe>#}
+        <div id="mpmessage">
+        </div>
+        <div class="pagemap" id="pagemap">
+        </div>
+        <script language="javascript">
+            function checkForm1(){
+                var suoid=$("#suoid").val();
+                var guiid=$("#guiid").val();
+                if (suoid=="" || guiid==""){
+                    alert("请选择要控制的所序号和柜序号！");
+                    return false;
+                }
+                else{
+                    var result=window.confirm("配电所："+suoid+"\n"+"开关柜："+guiid+"\n确定选择控制吗？")
+                    if (result) {
+                        return true;
+                    }
+                    else{
+{#                        $("#suoid").attr("value","");#}
+{#                        $("#guiid").attr("value","");#}
+{#                        $("#suoid")[0].value="";#}
+                        document.getElementById("suoid").value="";   //这是三种清空输入框的方法。
+                        document.getElementById("guiid").value="";
+                        return false;
+                    }
+                }
+            }
+            function checkForm2(){
+                var suo_id=$("#suo_id").val();
+                var gui_id=$("#gui_id").val();
+                var upTime=$("#up_time").val();
+                var timeInterval=$("#time_interval").val();
+                if (suo_id=="" || gui_id==""){
+                    alert("请选择要控制的所序号和柜序号！");
+                    return false;
+                }
+                else if(upTime=="" || timeInterval==""){
+                    alert("请选择要控制的上传时间和上传间隔！");
+                    return false;
+                }
+                else{
+                    var result=window.confirm("配电所："+suo_id+"\n"+"开关柜："+gui_id+"\n确定选择实时控制吗？")
+                    if (result) {
+                        return true;
+                    }
+                    else{
+                        document.getElementById("suo_id").value="";
+                        document.getElementById("gui_id").value="";
+                        return false;
+                    }
+                }
+            }
+
+            function showSG(snum){
+                $("#dnum").empty();
+                var url="/showInfo/showSwitchgear/?sid="+snum;
+                $.getJSON(url,
+                        function(data){
+                            var geardata= data['gears'];
+                            $.each(geardata,function(gearIndex,obj) {
+                                var id=obj['cid'];
+                                selectstr = "<option value='" + id + "'>" + id + "</option>";
+                                $('#dnum').append(selectstr);
+
+                            });
+
+                        });
+            }
+            var sid=$("#sid").val();
+            showSG(sid);
+
+{#            function refresh(){#}
+{#                var mframe=$('#targetPage').attr("src");#}
+{#                $("#targetPage").attr("src",mframe);#}
+{#            }#}
+{#            var t=setInterval("refresh()",5000);#}
+{#            function showtime(time){#}
+{#                clearInterval(t);#}
+{#                time=Number(time);#}
+{#                time=time*1000;#}
+{#                t=setInterval("refresh()",time);#}
+{#            }#}
+            //方法一：
+            //创建XMLHttpRequestc对象
+{#            var  xmlHttp=false;#}
+{#            //判断浏览器#}
+{#            function createXMLHttpRequest(){#}
+{#                if(window.ActiveXObject){//IE浏览器#}
+{#                    try{#}
+{#                        xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");#}
+{#                    }catch(e){#}
+{#                        try{#}
+{#                            xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");#}
+{#                        }catch(e){}#}
+{#                    }#}
+{#                }else{//其他浏览器：如mozilla 的 fireFox(火狐) 或者 netscape 7#}
+{#                    xmlHttp=new XMLHttpRequest();#}
+{#                }#}
+{#            }#}
+{#            //提交获得值后的方法#}
+{#            function OnShow(){#}
+{#                if(xmlHttp.readyState==4){#}
+{#                    if(xmlHttp.status==200){#}
+{#                        var info=xmlHttp.responseText;#}
+{#                        document.getElementById("targetPage").innerHTML=info;#}
+{#                    }#}
+{#                }#}
+{#            }#}
+{#            //要调用的方法#}
+{#            function OnLink(){#}
+{#                createXMLHttpRequest();#}
+{#                xmlHttp.open("post","/CVoltage/info1/",true);#}
+{#                xmlHttp.onreadystatechange=OnShow;#}
+{#                xmlHttp.send(null);#}
+{#            }#}
+{#            setInterval('OnLink()',5000);#}
+
+            //方法二
+{#            function refresh(){#}
+{#                $.ajax({#}
+{#                    type:'POST',#}
+{#                    url:'/CVoltage/info1/',#}
+{#                    success: function(data) {#}
+{#                        window.alert(data);#}
+{#                        $('#targetPage').html(data);#}
+{##}
+{#                    }#}
+{#                });#}
+{#            }#}
+{#            setInterval('refresh()',5000);#}
+
+            //方法三
+{#            function refresh(){#}
+{#                var mframe=$('#targetPage').attr("src");#}
+{#                $("#targetPage").attr("src",mframe);#}
+{#            }           #}
+{#            setInterval("refresh()",5000);#}
+
+            //方法四
+{#            setInterval(function() {#}
+{#                $("#targetPage").load(location.href+" #targetPage>*","");#}
+{#            }, 5000);#}
+
+            //方法五
+{#            document.getElementById("targetPage").onload=function show(){alert("haha");window.setTimeout("window.frames['targetPage'].location.reload()",5000);}#}
+        </script>
+        <b class="b4b"></b><b class="b3b"></b><b class="b2b"></b><b class="b1b"></b>
+    </div>
+
+{% endblock %}

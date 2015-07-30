@@ -1,0 +1,34 @@
+{
+"Type":"DeviceDefine",
+"DepartmentID":"D1",
+"SwitchgearDevices":[
+	{"ID":"S1",
+	"Samples":[
+		{"MeterID":"M1","Name":"Ua","StartAddress":"0100","ValueType":"Float"},
+		{"MeterID":"M1","Name":"Ub","StartAddress":"0102","ValueType":"Float"},
+		{"MeterID":"M1","Name":"Uc","StartAddress":"0104","ValueType":"Float"},
+		{"MeterID":"M1","Name":"Ia","StartAddress":"0106","ValueType":"Float"},
+		{"MeterID":"M1","Name":"Ib","StartAddress":"0108","ValueType":"Float"},
+		{"MeterID":"M1","Name":"Ic","StartAddress":"010A","ValueType":"Float"},
+		{"MeterID":"M1","Name":"PFa","StartAddress":"010C","ValueType":"Float"},
+		{"MeterID":"M1","Name":"PFb","StartAddress":"010E","ValueType":"Float"},
+		{"MeterID":"M1","Name":"PFC","StartAddress":"0110","ValueType":"Float"},
+		{"MeterID":"M2","Name":"BreakerPos","StartAddress":"1000","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"HandPos","StartAddress":"1001","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"TestPos","StartAddress":"1002","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"GroundKnife","StartAddress":"1003","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"Energy","StartAddress":"1004","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"Switch7","StartAddress":"1005","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"EA","StartAddress":"1006","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"EB","StartAddress":"1007","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"EC","StartAddress":"1008","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"Lock","StartAddress":"1009","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"Sensor1","StartAddress":"100A","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"Sensor2","StartAddress":"100B","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"Load1","StartAddress":"100C","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"Load2","StartAddress":"100D","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"Loop1","StartAddress":"100E","ValueType":"Bit"},
+		{"MeterID":"M2","Name":"Loop2","StartAddress":"100F","ValueType":"Bit"}
+	]}
+]
+}

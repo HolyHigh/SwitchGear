@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Mon Aug 25 21:10:21 CST 2014
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=true
+jarname=/root/workspace/SwitchTransfer_fat.jar
+manifest.mergeall=true
+manifest.mainclass=com.SwitchTransfer.DealWithArm.MainFunc
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=

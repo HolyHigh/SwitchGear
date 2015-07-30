@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7 ]><html class="ie ie6"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8"><![endif]-->
+<!--[if IE 9 ]><html class="ie ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html>
+<head>
+    <title>发现异常信息</title>
+    <script type="text/javascript" src="/site_static/cvoltage_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/site_static/cvoltage_static/js/jquery.js"></script>
+
+</head>
+<body>
+<h1>your sister!</h1>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var day = today.getDate();
+        var hour=today.getHours();
+        var minute=today.getMinutes();
+        var second=today.getSeconds();
+        var myDate=year+'-'+month+'-'+day;
+        var time=hour+':'+minute+':'+second;
+        var dateTime=myDate+' '+time;
+        var first = myDate.replace(/-/g,"/");
+        var end="2014-5-13".replace(/-/g,"/");
+
+        alert("日期1比日期2大:"+(first-end)/(24*60*60*1000));
+        var dt = new Date();
+{#        alert(dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate()+' '+dt.getHours()+':'+dt.getMinutes()+':'+dt.getSeconds()).replace(/([\-\: ])(\d{1})(?!\d)/g,'$10$2');#}
+
+{#        myDate.getHours();       //获取当前小时数(0-23)       #}
+{#        myDate.getMinutes();     //获取当前分钟数(0-59)       #}
+{#        myDate.getSeconds();     //获取当前秒数(0-59)   #}
+
+    });
+</script>
+
+</body>
+</html>

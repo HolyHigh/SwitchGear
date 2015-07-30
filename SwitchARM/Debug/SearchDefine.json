@@ -1,0 +1,36 @@
+{
+"Type":"SearchDefine",
+"DepartmentID":"s001",
+"SwitchgearID":"c101",
+"Meters":[
+	{"ID":"M1","NodeAddress":2,"Command":3,"StartAddress":"0100","RegisterCount":18,"Samples":[
+		{"Name":"Ua","ValueType":"Float"},
+		{"Name":"Ub","ValueType":"Float"},
+		{"Name":"Uc","ValueType":"Float"},
+		{"Name":"Ia","ValueType":"Float"},
+		{"Name":"Ib","ValueType":"Float"},
+		{"Name":"Ic","ValueType":"Float"},
+		{"Name":"PFa","ValueType":"Float"},
+		{"Name":"PFb","ValueType":"Float"},
+		{"Name":"PFc","ValueType":"Float"}
+	]},
+	{"ID":"M2","NodeAddress":1,"Command":3,"StartAddress":"1000","RegisterCount":16,"Samples":[
+		{"Name":"00","ValueType":"Bit"},
+		{"Name":"01","ValueType":"Bit"},
+		{"Name":"02","ValueType":"Bit"},
+		{"Name":"03","ValueType":"Bit"},
+		{"Name":"04","ValueType":"Bit"},
+		{"Name":"05","ValueType":"Bit"},
+		{"Name":"06","ValueType":"Bit"},
+		{"Name":"07","ValueType":"Bit"},
+		{"Name":"08","ValueType":"Bit"},
+		{"Name":"09","ValueType":"Bit"},
+		{"Name":"10","ValueType":"Bit"},
+		{"Name":"11","ValueType":"Bit"},
+		{"Name":"12","ValueType":"Bit"},
+		{"Name":"13","ValueType":"Bit"},
+		{"Name":"14","ValueType":"Bit"},
+		{"Name":"15","ValueType":"Bit"}
+	]}
+]
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 7 ]><html class="ie ie6"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8"><![endif]-->
+<!--[if IE 9 ]><html class="ie ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html>
+<!--<![endif]-->
+<head>
+    <title>电流电压控制平台</title>
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/bootstrap.css" >
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/pages2.css">
+
+    <script type="text/javascript">
+        $(function () {
+            $("#usertxt").focus();
+            //清空按钮
+            $("#clearbtn").bind("click", function () {
+                $("#usertxt").focus();
+                $("#usertxt").val("");
+                $("#pwdtxt").val("");
+
+            });
+
+            $("#loginbtn").bind("click", function () {
+                var getuser = $("#usertxt").val();
+                var getpwd = $("#pwdtxt").val();
+                if (getuser != "") {
+                    $.post("Boot.ashx", { getuser: getuser, getpwd: getpwd }, function (data, status) {
+                        if (status == "success") {
+                            if (data != "") {
+                                if (data == "0") {
+                                    alert("账户密码不正确！");
+
+                                    $("#usertxt").focus();
+                                    $("#usertxt").val("");
+                                    $("#pwdtxt").val("");
+                                }
+                                if (data == "1")  //为1 进入下个界面
+                                {
+                                    window.location.href = "aiotHome.htm";
+                                }
+                                if (data == "-1") {
+                                    alert("该用户（组）已经被停用，请联系管理员！");
+                                }
+
+
+                        }                            }
+
+                else {
+                            alert("账户密码不正确！");
+                            $("#usertxt").focus();
+                            $("#usertxt").val("");
+                            $("#pwdtxt").val("");
+                        }
+                    });
+                }
+                else {
+                    alert("请输入登录名");
+                    $("#usertxt").focus();
+                }
+            });
+
+        });
+        function doKeyDownUser() {
+            if (event.keyCode == 13) {
+
+                if ($("#usertxt").val() != "") {
+                    $("#pwdtxt").focus();
+                }
+                else {
+
+                    alert("请输入登录名");
+                }
+            }
+
+        }
+
+        function doKeyDown() {   //密码框按下回车
+            if (event.keyCode == 13) {
+
+                var getuser = $("#usertxt").val();
+                var getpwd = $("#pwdtxt").val();
+                if (getuser != "") {
+                    $.post("Boot.ashx", { getuser: getuser, getpwd: getpwd }, function (data, status) {
+                        if (status == "success") {
+                            if (data != "") {
+
+                                if (data == "0") {
+                                    alert("账户密码不正确！");
+
+                                    $("#usertxt").focus();
+                                    $("#usertxt").val("");
+                                    $("#pwdtxt").val("");
+                                }
+                                if (data == "1")  //为1 进入下个界面
+                                {
+                                    window.location.href = "aiotHome.htm";
+                                }
+                                if (data == "-1") {
+                                    alert("该用户（组）已经被停用，请联系管理员！");
+                                }
+                            }
+                        }
+                        else {
+                            alert("账户密码不正确！");
+                            $("#usertxt").focus();
+                            $("#usertxt").val("");
+                            $("#pwdtxt").val("");
+                        }
+                    });
+                }
+                else {
+                    alert("请输入登录名");
+                    $("#usertxt").focus();
+                }
+
+            }
+        }
+
+        function glsrbtn_onclick() {
+
+        }
+
+    </script>
+</head>
+<body >
+
+<div class="container">
+    <h1 class="page-header" style="font-weight: bold;  font-size: 20px; color: #ffffff" >安徽东方旭智能开关柜监测系统</h1 >
+
+    <div class="modal" id="Login"  style="margin-top: 100px;">
+        <div class="modal-header">
+            <h4 style="font-weight: bold;  font-size: 20px;color: #ffffff">用户登录</h4>
+        </div>
+        <div class="modal-body" style="margin-top: 40px;">
+            <form class="form-horizontal" action="/homepage/login/" method="post" >
+                <div class="control-group">
+                    <label class="control-label" style="font-weight: bold;  font-size: 15px; color: #ffffff" >用户名：</label>
+                    <div class="controls">
+                        <input type="text" id="usertxt"   name="username" value="请输入用户名" onFocus="if(value=='请输入用户名')value='';" onBlur="if(value=='')value='请输入用户名';" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" style="font-weight: bold;  font-size: 15px; color: #ffffff">密码：</label>
+                    <div class="controls">
+                        <input type="password" id="pwdtxt"  name="password"  value="请输入密码" onFocus="if(value=='请输入密码')value='';" onBlur="if(value=='')value='请输入密码';" />
+                    </div>
+                </div>
+                <input id="clearbtn"  type="button" value="" />&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                <input id="loginbutton"  type="submit" value="" onClick="" />
+{#                <div class="form-actions" >#}
+{#                    <input id="clearbtn"  type="button" value="" />&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;#}
+{#                    <input id="loginbutton"  type="submit" value="" onClick="" />#}
+{#                </div>#}
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{#<div style="margin-top: 100px">#}
+{#    <form action="/homepage/login/" method="post">#}
+{#        <div style=" text-align: center;">#}
+{#            <span id="userlogin">用户登录</span><br>#}
+{#            <span style="font-weight: bold; font-size: 20px; color:#b3b3b3;">用户名：</span><input class="logininput name" type="text"  id="usertxt" style=" width:300px;height: 50px;font-size: 20px;"  name="username" value="请输入用户名" onFocus="if(value=='请输入用户名')value='';" onBlur="if(value=='')value='请输入用户名';" /><br>#}
+{##}
+{#            &nbsp; &nbsp;&nbsp;<span style="font-weight: bold; font-size: 20px; color:#b3b3b3; ">密码：</span><input class="logininput password" type="password"  id="pwdtxt" style=" width:300px;height: 50px;font-size: 20px;" name="password"  value="请输入密码" onFocus="if(value=='请输入密码')value='';" onBlur="if(value=='')value='请输入密码';" /><br>#}
+{##}
+{##}
+{#            <input id="clearbtn" type="button" value="清   空" />&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;#}
+{#            <input id="loginbutton" type="submit" value="登 录" onClick="" />#}
+{##}
+{#        </div>#}
+{#    </form>#}
+{##}
+{##}
+{##}
+{#</div>#}
+<script type="text/javascript" src="/site_static/homepage_static/js/jquery.js"></script>
+<script type="text/javascript" src="/site_static/homepage_static/js/bootstrap.js"></script>
+<script type="text/javascript" src="/site_static/homepage_static/js/button.js"></script>
+<script type="text/javascript" src="/site_static/homepage_static/js/respond.js"></script>
+<script>
+    $("#clearbtn").on("click", function () {
+        $("#usertxt").focus();
+        $("#usertxt").val("");
+        $("#pwdtxt").val("");
+    });
+</script>
+</body>
+</html>

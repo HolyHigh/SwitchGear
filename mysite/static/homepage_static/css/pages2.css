@@ -1,0 +1,763 @@
+a, a:hover{
+    text-decoration: none;
+}
+.banner, .app, .footer{
+    width: 1000px;
+    margin: auto;
+}
+
+.navbar{
+    width: 1000px;
+    height: 60px;
+    margin: auto;
+}
+
+body{
+    background: url(../images/body2.jpg) no-repeat;
+    min-height: 768px;
+}
+#Login{
+    background-color: #008aff;
+    /*background: url(../images/loginBox.png) no-repeat;*/
+}
+
+#more{
+    width: 100px;
+    height: 30px;
+    position: fixed;
+    top: 110px;
+    left: 0;
+    z-index: 999;
+    background: url(../images/more.png) no-repeat;
+}
+#allapp{
+    width: 100px;
+    height: 120px;
+    position: fixed;
+    top: 140px;
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+    display: none;
+    background: url(../images/allappbg.png) no-repeat;
+    padding-top: 5px;
+}
+.other{
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    margin: 5px 0 5px 10px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    width: 90px;
+    height: 20px;
+}
+.other a{
+    color: #ccc;
+}
+.other a:hover{
+    color: #008aff;
+}
+.cutoffapp{
+    height: 1px;
+    width: 90px;
+    background-color: #777;
+    margin-left: 5px;
+}
+.nav{
+    height: 60px;
+    width: 100%;
+    background: url(../images/navbg.png) repeat-x;
+    position: relative;
+}
+.navbar{
+    width: 1000px;
+    height: 60px;
+    margin: auto;
+}
+.logo{
+    width: 268px;
+    height: 10px;
+    /*background: url(../images/logo.png) no-repeat;*/
+    font-size: 20px;
+    color: #fff;
+    float: left;
+    margin: 20px 0 20px 20px;
+}
+.login{
+    width: 280px;
+    height: 30px;
+    display: inline-block;
+    position: relative;
+    left: 45px;
+    top: 14px;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+.login a{
+    color: #fff;
+    line-height: 30px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    cursor: pointer;
+}
+.login a:hover{
+    color: #008aff;
+}
+#lgbody{
+    z-index: 999;
+    width: 242px;
+    height: 212px;
+    background: url(../images/lgbodybg.png) no-repeat;
+    position: absolute;
+    left: -25px;
+    display: none;
+}
+.logininput{
+    width: 198px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    background-color: #fff;
+}
+.logininput.name{
+    margin-top: 35px;
+}
+.logininput.password{
+    margin-top: 20px;
+}
+#forget{
+    text-decoration: underline;
+    display: block;
+    color: #777;
+    line-height: 20px;
+    margin-top: 10px;
+}
+.button{
+    width: 84px;
+    height: 30px;
+    border: none;
+}
+#cancelbutton{
+    background: url(../images/cancel.png) no-repeat;
+    width: 84px;
+    height: 30px;
+    border: none;
+    margin-top: 10px;
+    margin-right: 35px;
+}
+#userlogin{
+    font-weight:bold;
+    font-size: 30px;
+    color: #8699a4;
+
+
+}
+
+#loginbutton{
+    background: url(../images/login.png) no-repeat;
+    width: 150px;
+    height: 60px;
+    border:none;
+    margin-right: 50px;
+
+}
+#clearbtn{
+    background: url(../images/clear.png) no-repeat;
+    width: 150px;
+    height: 60px;
+    border: none;
+    margin-left: 90px;
+
+}
+.banner{
+    height: 400px;
+    background: url(../images/bannerbg.jpg) no-repeat;
+    position: relative;
+}
+.introcont{
+    float: left;
+    margin-top: 20px;
+    margin-left: 300px;
+}
+.introcont a{
+    font-size: 13px;
+    color: #d0d0d0;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+}
+#intro{
+    margin-top: 20px;
+    font-size: 20px;
+}
+.app{
+    height: 10px;
+    background: url(../images/appbg.png) repeat;
+    position: relative;
+}
+.appbgtop{
+    width: 1000px;
+    height: 20px;
+    background: url(../images/appbgtop.png) repeat-x;
+}
+.appbgbottom{
+    bottom: 0;
+    width: 1000px;
+    height: 15px;
+    background: url(../images/appbgbottom.png) repeat;
+    position: absolute;
+    bottom: 0;
+}
+.applist{
+    width: 940px;
+    display: inline-block;
+    margin: 0 30px;
+}
+.application{
+    display: inline-block;
+    width: 120px;
+    height: 140px;
+    margin: 0px 5px 30px;
+}
+.application:hover{
+    background: url(../images/apphover.png) no-repeat;
+}
+.appimg{
+    width: 105px;
+    height: 105px;
+    margin-left: 8px;
+    margin-top: 5px;
+}
+.apptitle{
+    text-align: center;
+    display: inline-block;
+    width: 105px;
+    height: 25px;
+    margin-top: 2px;
+    color: #fff;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    margin-left: 8px;
+}
+.footer{
+    height: 130px;
+    background-color: #2a2a2a;
+    text-align: center;
+}
+.footer p{
+    display: inline-block;
+    color: #8d8d8d;
+    font-size: 14px;
+    margin-top: 40px;
+}
+.footer a{
+    color: #ccc;
+}
+/*.container{*/
+    /*margin: auto;*/
+    /*width: 1000px;*/
+    /*min-height: 600px;*/
+    /*background-color: rgb(250,250,250);*/
+    /*margin-top: 50px;*/
+/*}*/
+.left{
+    width: 200px;
+    height: 600px;
+    float: left;
+    background: url(../images/1.jpg) no-repeat;
+}
+.right{
+    width: 780px;
+    min-height: 600px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.register{
+    width: 700px;
+    margin: 20px 40px 0;
+}
+.register p{
+    font-size: 24px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #555;
+}
+.register form{
+    margin-top: 30px;
+    margin-left: 50px;
+    font-size: 16px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #999;
+}
+.register form a{
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+    margin-right: 10px;
+}
+.register form p{
+    font-size: 14px;
+    color: #008aff;
+    display: inline-block;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+}
+.register img{
+    width: 270px;
+    height: 200px;
+}
+.register ul{
+    display: inline-block;
+}
+.register span{
+    float: right;
+    margin-right: 265px;
+    margin-top: 5px;
+    font-size: 18px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #666;
+}
+.infor .title{
+    font-size: 24px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #555;
+    margin-left: 20px;
+    display: inline-block;
+}
+.infor p{
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #333;
+    margin-left: 20px;
+    width: 400px;
+    height: 150px;
+    display: inline-block;
+    overflow: hidden;
+}
+.reinput{
+    width: 198px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    background-color: #fff;
+}
+.reviewinput{
+    width: 250px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    background-color: #fff;
+}
+.cutoff{
+    width: 700px;
+    height: 1px;
+    background-color: #ddd;
+}
+.clear.button{
+    background: url(../images/clear.png) no-repeat;
+    margin-top: 30px;
+}
+.regist.button{
+    background: url(../images/rebutton.png) no-repeat;
+    margin-left: 100px;
+}
+
+.regists.button{
+    background: url(../images/pwd.png) no-repeat;
+    margin-left: 100px;
+}
+
+.query.button{
+    background: url(../images/query.png) no-repeat;
+    margin-left: 100px;
+}
+.tabs{
+    margin-bottom: 50px;
+}
+.tabs a{
+    cursor: pointer;
+}
+#tabstitle{
+    height: 30px;
+    width: 680px;
+    margin: auto;
+    border-bottom: 2px solid #008aff;
+}
+#title1,#title2{
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    margin-left: 20px;
+    color: #888;
+}
+#title1{
+    background-color: #008aff;
+    color: #fff;
+}
+.panel{
+    width: 660px;
+    margin: auto;
+}
+.panel.b{
+    display: none;
+}
+.panel ul{
+    margin-top: 10px;
+    margin-left: 15px;
+}
+.panel li{
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #444;
+}
+.panel li a{
+    color: #008aff;
+}
+.information{
+    width: 150px;
+    height: 40px;
+    margin-top: 20px;
+}
+.pp{
+    width: 270px;
+    height: 180px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #dcdcdc;
+}
+.pp:hover{
+    border: 1px solid #008aff;
+}
+.infotitle{
+    width: 5px;
+    height: 40px;
+    background-color: #008aff;
+    display: inline-block;
+}
+.information a{
+    font-size: 18px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #444;
+    position: relative;
+    top: -20px;
+    margin-left: 5px;
+}
+.information p{
+    display: inline-block;
+    font-size: 12px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #999;
+    position: relative;
+    top: -25px;
+    margin-left: 14px;
+}
+.comment{
+    width: 660px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.user a,.time a{
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #008aff;
+}
+.user img{
+    width: 13px;
+    height: 13px;
+    margin-left: 5px;
+}
+.time,.user{
+    display: inline-block;
+}
+.time{
+    position: absolute;
+    right: 0;
+}
+.message p{
+    display: inline-block;
+    width: 500px;
+    font-size: 14px;
+    color: #444;
+    margin-top: 5px;
+}
+.cutoffs{
+    width: 660px;
+    height: 1px;
+    background-color: #ddd;
+    margin-top: 5px;
+}
+.cutoffl{
+    width: 980px;
+    margin: auto;
+    height: 1px;
+    background-color: #ddd;
+    margin-top: 5px;
+}
+.report form{
+    margin: 10px 0 10px 20px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #999;
+}
+.research{
+    width: 190px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    background-color: #fff;
+    margin-left: 20px;
+}
+.report form a{
+    text-align: right;
+    margin-right: 5px;
+    margin-left: 15px;
+}
+#chakan{
+    width: 24px;
+    height: 24px;
+    background: url(../images/research.png) no-repeat;
+    border: none;
+}
+#mapcontainer{
+    width: 1000px;
+    height: 570px;
+    margin-top: 10px;
+}
+#map{
+    float: left;
+    width: 700px;
+    height: 550px;
+    margin-left: 10px;
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+}
+#map:hover, .logininput:hover, .research:hover, .reinput:hover, .reviewinput:hover, .informap:hover, textarea:hover{
+    border: 1px solid #bcbcbc;
+}
+#mapms{
+    width: 270px;
+    height: 552px;
+    display: inline-block;
+    margin-left: 5px;
+}
+.remessage{
+    width: 260px;
+    height: 100px;
+    margin: 0 0 0 5px;
+    display: inline-block;
+    border: 1px solid rgb(250,250,250);
+}
+.remessage:hover{
+    background-color: #eee;
+    border: 1px solid #ddd;
+}
+.mapimg{
+    width: 15px;
+    height: 20px;
+    background: url(../images/map.png) no-repeat;
+    display: inline-block;
+    float: left;
+}
+.maptitle{
+    display: inline-block;
+    width: 250px;
+    height: 20px;
+    margin: 5px 0 5px 5px;
+    line-height: 20px;
+}
+.maptitle a{
+    margin-left: 5px;
+    font-size: 14px;
+    color: #008aff;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+}
+.maptitle p{
+    width: 250px;
+    height: 60px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    font-size: 12px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+}
+#tabstitle.app3{
+    width: 960px;
+}
+.container iframe{
+    border: none;
+    width: 960px;
+    height: 1060px;
+    margin: 20px;
+    display: inline-block;
+    overflow: hidden;
+}
+.iframe.body{
+    background: rgb(250,250,250);
+    height: 100%;
+    min-height: 1060px;
+}
+.season{
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #999;
+    width: 940px;
+    height: 30px;
+    line-height: 30px;
+    margin: auto;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    background-color: rgb(250,250,250);
+}
+.season form{
+    display: inline-block;
+}
+.season form option{
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+}
+.show{
+    margin-left: 50px;
+    margin-top: 20px;
+    display: inline-block;
+}
+.show img{
+    width: 230px;
+    height: 150px;
+    display: block;
+    margin-bottom: 5px;
+}
+.show p{
+    text-align: left;
+    font-size: 12px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #008aff;
+    float: left;
+}
+.updown{
+    width: 80px;
+    float: right;
+    height: 15px;
+}
+.page{
+    width: 300px;
+    margin: auto;
+    margin-top: 30px;
+}
+.pagemap{
+    width: 260px;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+}
+.plant{
+    float: left;
+}
+.class{
+    float: right;
+}
+.page a{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    background-color: #008aff;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+}
+.pagemap a{
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+}
+.show.RE{
+    margin-left: 30px;
+}
+.show.RE img{
+    width: 180px;
+    height: 130px;
+}
+#recommend p{
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #999;
+}
+p.reatitle{
+    font-size: 16px;
+    color: #008aff;
+}
+img.up{
+    width: 13px;
+    height: 13px;
+}
+#panelb form{
+    margin: 0;
+}
+textarea{
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.recom{
+    width: 84px;
+    height: 30px;
+    border: none;
+}
+.recom.a{
+    background: url(../images/recommended.png) no-repeat;
+    float: right;
+}
+.recom.b{
+    background: url(../images/clear.png) no-repeat;
+}
+.informap{
+    width: 300px;
+    height: 400px;
+    float: right;
+    border: 1px solid #ddd;
+}
+.evaluate{
+    font-size: 35px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #008aff;
+    font-weight: bold;
+    font-style: italic;
+}
+.rcpresearch{
+    height: 70px;
+    width: 100%;
+}
+.rcpresearch img{
+    margin-top: 20px;
+    float: left;
+}
+.rcpresearch input{
+    width: 240px;
+    height: 25px;
+    border-radius: 3px;
+    border: 1px solid #dcdcdc;
+    background-color: #fff;
+    margin-top: 25px;
+    float: left;
+}
+.rcptj#chakan{
+    margin-top: 27px;
+    margin-left: 5px;
+}
+img.appraise{
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+.aliright{
+    width: 80px;
+    display: inline-block;
+    text-align: right;
+    font-size: 16px;
+    font-family: "Microsoft YaHei", "微软雅黑", "黑体", "宋体";
+    color: #008aff;
+    line-height: 30px;
+    margin-right: 20px;
+}

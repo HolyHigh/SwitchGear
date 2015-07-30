@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>电流电压控制平台</title>
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/pages.css">
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/bootstrap.css" >
+
+</head>
+<body>
+<div class="nv">
+    <div class="nvbar">
+        <!--<div class="logo"></div>  -->
+        <a href="/homepage/index/"> <div class="logo" >东方旭智能开关柜监测系统</div></a>
+        <div class="introcont">
+            <a href="/homepage/introduce/" target="_blank">平台简介</a>&nbsp&nbsp&nbsp&nbsp
+            <a href="/homepage/contact/" target="_blank">联系我们</a>&nbsp&nbsp&nbsp&nbsp
+            <a rel="lightbox" href="/site_static/homepage_static/images/help1.jpg">帮助</a>
+        </div>
+
+        <div class="login">
+            {% if user.username %}
+                <p>欢迎：<a href="/homepage/userpage/" title="点击进入个人中心">{{ user.username }}</a> &nbsp;&nbsp;<a href="/homepage/logout/">注销</a></p>
+            {% else %}
+                <a id="lgbutton" onClick="document.getElementById('lgbody').style.display='block'">登录</a> &nbsp; | &nbsp;
+{#                <a href="/homepage/register/">注册</a> &nbsp; &nbsp; &nbsp; &nbsp;#}
+
+                <div id="lgbody">
+                    <form action="/homepage/login/" method="post">
+                        <input class="logininput name" type="text"  id="username" name="username" value="请输入用户名" onFocus="if(value=='请输入用户名')value='';" onBlur="if(value=='')value='请输入用户名';" />
+                        <input class="logininput password" type="password"  id="password" name="password"  value="请输入密码" onFocus="if(value=='请输入密码')value='';" onBlur="if(value=='')value='请输入密码';" />
+
+                        <input id="cancelbutton" type="button" value="" onClick="document.getElementById('lgbody').style.display='none'" />
+                        <input id="loginbutton" type="submit" value="" onClick="" />
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+<div style="height:50px;" >
+    <div class="navbar" >
+        <div class="navbar-inner" >
+            <div  >
+                <ul class="nav">
+                    <li class="active "><a href="/homepage/index/">首页</a></li>
+                    <li class="divider-vertical "></li>
+                    <li ><a href="/CVoltage/index/">电流电压信息</a></li>
+                    <li class="divider-vertical "></li>
+                    <li ><a href="/Switch/index/">开关信息</a></li>
+                    <li class="divider-vertical "></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="banner"> </div>
+{#<div class="app">#}
+{#    <div class="appbgtop"> &nbsp;&nbsp;&nbsp;#}
+{#        <a href="/homepage/index/" title="显示主页" style="font-size:14px;font-weight:bold;color: white">主页</a> &nbsp;&nbsp;&nbsp;#}
+{#        <a href="/CVoltage/index/" title="显示电流电压信息" style="font-size:14px;font-weight:bold;color: white">电流电压信息</a> &nbsp;&nbsp;&nbsp;#}
+{#        <a href="/Switch/index/" title="显示开关信息"style="font-size:14px;font-weight:bold;color: white">开关信息</a> &nbsp;&nbsp;&nbsp;#}
+{#    </div>#}
+{##}
+{#</div>#}
+<div class="footer">
+    <!--
+    <p>http://www.isafefood.cn备案号：苏ICP备11037433</p><br/>
+    -->
+    <p>Copyright © 2014 POWER BY <a href="http://www.ahdonfun.com/" target="_blank">安徽东方旭电气设备有限公司</a></p>
+</div>
+<script type="text/javascript" src="/site_static/homepage_static/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/site_static/homepage_static/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/site_static/homepage_static/js/lightbox.js"></script>
+<script type="text/javascript" src="/site_static/homepage_static/js/jquery.js"></script>
+<script type="text/javascript" src="/site_static/homepage_static/js/bootstrap.js"></script>
+</body>
+</html>

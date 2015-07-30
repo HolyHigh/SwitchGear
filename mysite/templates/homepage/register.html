@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>平台注册</title>
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/pages.css">
+
+</head>
+<body>
+<div class="nav">
+    <div class="navbar">
+        <a href="/homepage/index/"> <div class="logo" >安徽泽润通物流平台</div></a>
+        <div class="introcont">
+            <a href="/homepage/introduce/">平台简介</a>&nbsp&nbsp&nbsp&nbsp
+            <a href="/homepage/contact/">联系我们</a>
+        </div>
+        <div class="login">
+            <a id="lgbutton" onClick="document.getElementById('lgbody').style.display='block'">登录</a> &nbsp; | &nbsp;
+            <a href="/homepage/register/">注册</a> &nbsp; &nbsp; &nbsp; &nbsp;
+            <!--
+            <a href="http://aiotWeb.iot-m.cn:8222" target="_blank" title="平台业务系统登录">专业用户登录</a>
+            -->
+            <div id="lgbody">
+                <form action="/homepage/login/" method="post">
+                    {% csrf_token %}
+                    <input class="logininput name" type="text" value="请输入用户名" onfocus="if(value=='请输入用户名')value='';" onblur="if(value=='')value='请输入用户名';" name="name" />
+                    <input class="logininput password" type="password" value="请输入密码" onfocus="if(value=='请输入密码')value='';" onblur="if(value=='')value='请输入密码';" name="password" />
+
+                    <!--    <a id="forget" href="">忘记密码？</a>    -->
+                    <input id="cancelbutton" type="button" value="" onclick="document.getElementById('lgbody').style.display='none'" />
+                    <input id="loginbutton" type="submit" value="" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div style="width: 1000px;height: 5px;margin: auto;background-color: #008aff;"></div>
+    <div class="left">
+    </div>
+    <div class="right">
+        <div class="register">
+            <p>注册</p>
+            <div class="cutoff"></div>
+            <form action="/homepage/register/" method="post" onsubmit=" return check();">
+                {% csrf_token %}
+                <a>用户名</a><input class="reinput" type="text" id="username" name="username" onblur="checkUsername();"/>
+                <p><b><label id="error" name="error" style="color: red "></label></b>&nbsp&nbsp至少5位字母、数字、下划线组成</p>
+                <br />
+                <br />
+                <a>昵&nbsp;&nbsp;称</a><input class="reinput" type="text" id="nickname" name="nickname"/>
+                <p>&nbsp&nbsp用户昵称</p>
+                <br />
+                <br />
+                <a>密码</a><input class="reinput" type="password" id="password1" name="password1"/>
+                <p>&nbsp&nbsp至少6位</p>
+                <br />
+                <br />
+                <a>重复密码</a><input class="reinput" type="password"  type="password" id="password2" />
+                <br />
+                <br />
+                <a>手机号</a><input class="reinput" type="text" id="phone" name="phone" />
+                <p>&nbsp&nbsp请输入11位手机号</p>
+                <br />
+                <br />
+                <!--
+                <a>角色选择</a>
+                <select id="role" name="role">
+                    <option value ="1">消费者</option>
+                      <option value ="2">生产者</option>
+                    <option value="3">流通业者</option>
+
+                </select>
+                <p>&nbsp&nbsp请选择身份</p>
+                <br />
+                <br />-->
+                <input id="button1" class="clear button" type="reset" value="" />
+                <input id="button2" class="regist button" type="submit" value=""/>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="footer">
+
+    <p>CopyRight 2014 POWER BY <a href="http://www.fudan-wuxi.net/" target="_blank">安徽泽润通物流平台</a></p>
+</div>
+
+<script type="text/javascript" src="/site_static/homepage_static/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/site_static/homepage_static/js/registerJS.min.js"></script>
+<script language="javascript" type="text/javascript">
+    function checkUsername(){
+        $.getJSON('/homepage/checkusername',{username:$('#username').val()},function(data){$("#error").html(data.result)});
+    }
+</script>
+</body>
+</html>

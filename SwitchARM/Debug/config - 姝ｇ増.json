@@ -1,0 +1,19 @@
+{
+"DeviceID":"DEV-001",
+"DepartmentID":"s001",
+"ServerIP":"192.168.14.186",
+"ServerPort":55555,
+"RS485FileName":"/dev/ttyS3",
+"RS485BaudRate":9600,
+"RS485QueryInterval":1,
+"UploadInterval":3600,
+"PacketEndTag":"\r\n",
+"AliveEnable":true,
+"AliveInterval":60,
+"AliveMessage":"",
+"RelaysResetTimeBaseInterval":50000,
+"Relays":[
+	{"Channel":1,"GPIO":0,"Default":0,"ResetValid":1,"ResetTime":10},
+	{"Channel":2,"GPIO":1,"Default":0,"ResetValid":1,"ResetTime":10}
+]
+}

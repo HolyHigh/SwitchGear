@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>平台简介|东方旭智能开关柜监测系统</title>
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/site_static/homepage_static/css/pages.css">
+
+</head>
+<body>
+<div class="nav">
+    <div class="navbar">
+        <a href="/homepage/index/">
+            <div class="logo">
+            </div>
+        </a>
+        <div class="introcont">
+            <a href="#">平台简介</a>&nbsp&nbsp&nbsp&nbsp
+            <a href="/homepage/contact/">联系我们</a>
+        </div>
+        <div class="login">
+            {% if user.username %}
+                <p>欢迎： <a href="/homepage/userpage/" title="点击进入个人中心">{{ user.username }}</a>&nbsp;&nbsp;<a href="/homepage/logout/">注销</a></p>
+            {% else %}
+                <a id="lgbutton" onClick="document.getElementById('lgbody').style.display='block'">登录</a> &nbsp; | &nbsp;
+                <a href="/homepage/register/">注册</a> &nbsp; &nbsp; &nbsp; &nbsp;
+                <div id="lgbody">
+                    <form action="/homepage/login/" method="post">
+                        {% csrf_token %}
+                        <input class="logininput name" type="text" id="username" name="username" value="请输入用户名" onFocus="if(value=='请输入用户名')value='';" onBlur="if(value=='')value='请输入用户名';" />
+                        <input class="logininput password" type="password" id="password" name="password" value="请输入密码" onFocus="if(value=='请输入密码')value='';" onBlur="if(value=='')value='请输入密码';" />
+                        <a id="forget" href="">忘记密码？</a>
+                        <input id="cancelbutton" type="button" value="" onClick="document.getElementById('lgbody').style.display='none'" />
+                        <input id="loginbutton" type="submit" value="" />
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div style="width: 1000px;height: 5px;margin: auto;background-color: #008aff;"></div>
+    <div class="left">
+    </div>
+    <div class="right">
+        <div class="register">
+            <p>平台简介</p>
+            <div class="cutoff"></div>
+
+            <p id="intro">
+               您好，欢迎您的光临！
+            </p>
+        </div>
+    </div>
+</div>
+<div class="footer">
+{#    <p>http://www.isafefood.cn备案号：苏ICP备11037433</p><br/>#}
+    <p>CopyRight © 2014 POWER BY <a href="http://www.yaoheba.net/" target="_blank">安徽东方旭有限公司</a></p>
+</div>
+<script type="text/javascript" src="/site_static/homepage_static/js/jquery-1.9.1.min.js"></script>
+</body>
+</html>

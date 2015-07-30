@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/site_static/cvoltage_static/css/base.css" />
+    <link rel="stylesheet" type="text/css" href="/site_static/cvoltage_static/css/pages.css" />
+    <link rel="stylesheet" type="text/css" href="/site_static/cvoltage_static/css/lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/site_static/cvoltage_static/css/bootstrap.css" >
+    <script type="text/javascript" src="/site_static/cvoltage_static/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/site_static/homepage_static/js/jquery-1.7.2.min.js"></script><!-- 使用lightbox时，一定要引用这个这个js文件，一开始没引用，一直显示不出效果 -->
+    <script type="text/javascript" src="/site_static/cvoltage_static/js/lightbox.js"></script>
+    <script type="text/javascript" src="/site_static/cvoltage_static/js/jquery.js"></script>
+    <script type="text/javascript" src="/site_static/cvoltage_static/js/bootstrap.js"></script>
+
+    {% block css %}{% endblock %}
+</head>
+<body>
+{% block header %}
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block script %}{% endblock %}
+</body>
+</html>
